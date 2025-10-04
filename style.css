@@ -87,6 +87,13 @@
             margin-right: auto;
         }
 
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
         .cta-button {
             background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
             color: #000000;
@@ -101,9 +108,21 @@
             display: inline-block;
         }
 
+        .cta-button.secondary {
+            background: linear-gradient(135deg, #2c2c2c 0%, #1a1a1a 100%);
+            color: #FFD700;
+            border: 2px solid #FFD700;
+        }
+
         .cta-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 25px rgba(255, 215, 0, 0.6);
+        }
+
+        .cta-button.secondary:hover {
+            background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%);
+            color: #000000;
+            border-color: transparent;
         }
 
         /* Problem & Solution Section */
@@ -384,6 +403,17 @@
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2.5rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .cta-button {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
             }
             
             .nav-links {

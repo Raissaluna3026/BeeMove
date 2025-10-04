@@ -6,6 +6,7 @@
     <title>BeeMove - Mapa Interativo | Monitoramento Global</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         .map-page-header {
             background: linear-gradient(135deg, #fefdf8 0%, #f9f7f0 100%);
@@ -194,6 +195,179 @@
             }
         }
         
+        /* Dashboard Styles for Map Page */
+        .map-dashboard-container {
+            background: rgba(26, 35, 50, 0.95);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            border: 2px solid #FFD700;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 20px;
+            min-height: 500px;
+        }
+        
+        .dashboard-panel {
+            background: rgba(15, 20, 25, 0.8);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            overflow: hidden;
+        }
+        
+        .dashboard-header {
+            background: rgba(255, 215, 0, 0.15);
+            padding: 15px 20px;
+            border-bottom: 1px solid rgba(255, 215, 0, 0.3);
+        }
+        
+        .dashboard-header h3 {
+            color: #FFD700;
+            margin: 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dashboard-header p {
+            color: #ffffff;
+            opacity: 0.8;
+            margin: 5px 0 0 0;
+            font-size: 0.85rem;
+        }
+        
+        .chart-content {
+            padding: 15px;
+            height: 300px;
+        }
+        
+        .chart-content.small {
+            height: 180px;
+        }
+        
+        .stats-bar {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            font-size: 0.85rem;
+        }
+        
+        .stat-mini {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .stat-mini .label {
+            color: #ffffff;
+            opacity: 0.8;
+            display: block;
+            font-size: 0.75rem;
+        }
+        
+        .stat-mini .value {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        
+        .center-dashboard {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .center-dashboard .dashboard-panel {
+            flex: 1;
+        }
+        
+        .dashboard-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 200px;
+            color: #FFD700;
+            font-size: 1.2rem;
+        }
+        
+        .dashboard-loading i {
+            margin-right: 10px;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .weather-mini {
+            padding: 10px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            margin: 5px 0;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .weather-mini-icon {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .weather-mini-info {
+            flex: 1;
+        }
+        
+        .weather-mini-info h5 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        .weather-mini-info .main-val {
+            color: #FFD700;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        @media (max-width: 1024px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .center-dashboard {
+                flex-direction: row;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .center-dashboard {
+                flex-direction: column;
+            }
+            
+            .chart-content {
+                height: 250px;
+            }
+            
+            .chart-content.small {
+                height: 200px;
+            }
+        }
+        
         .dashboard-placeholder {
             text-align: center;
             padding: 50px;
@@ -308,9 +482,9 @@
                 <div class="map-emoji alert-emoji" style="top: 60%; left: 25%;" title="Região com déficit de pólen">⚠️</div>
                 
                 <!-- Bee Emojis (positioned in different regions) -->
-                <div class="map-emoji bee-emoji" style="top: 30%; left: 45%;" onclick="toggleDashboard()" title="Clique para ver dados da estação BeeMove">🐝</div>
-                <div class="map-emoji bee-emoji" style="top: 50%; left: 60%;" onclick="toggleDashboard()" title="Rede BeeMove ativa">🐝</div>
-                <div class="map-emoji bee-emoji" style="top: 70%; left: 40%;" onclick="toggleDashboard()" title="Drone BeeMove em operação">🐝</div>
+                <div class="map-emoji bee-emoji" style="top: 30%; left: 45%;" onclick="toggleDashboard('station-1')" title="Estação BeeMove SP-001 - São Paulo" data-station="SP-001">🐝</div>
+                <div class="map-emoji bee-emoji" style="top: 50%; left: 60%;" onclick="toggleDashboard('station-2')" title="Estação BeeMove RJ-002 - Rio de Janeiro" data-station="RJ-002">🐝</div>
+                <div class="map-emoji bee-emoji" style="top: 70%; left: 40%;" onclick="toggleDashboard('station-3')" title="Estação BeeMove MG-003 - Minas Gerais" data-station="MG-003">🐝</div>
             </div>
 
             <!-- Legend -->
@@ -358,15 +532,141 @@
 
                 <!-- Dashboard Container (Hidden by default) -->
                 <div id="dashboardContainer" class="dashboard-container">
-                    <div class="dashboard-placeholder">
-                        <i class="fas fa-chart-bar"></i>
-                        <h3 style="color: #2c2c2c; margin: 20px 0;">📊 Dashboard de Monitoramento BeeMove</h3>
-                        <p style="color: #2c2c2c; opacity: 0.8; margin-bottom: 20px;">
-                            Dados em tempo real da estação selecionada
-                        </p>
-                        <div style="background: linear-gradient(135deg, #FFD700 0%, #FFA000 100%); padding: 20px; border-radius: 10px; color: #2c2c2c; font-weight: bold; margin-top: 20px;">
-                            🔄 Carregando dados da rede BeeMove...<br>
-                            📈 Dashboard interativo será integrado aqui
+                    <div class="map-dashboard-container">
+                        <div style="text-align: center; margin-bottom: 20px;">
+                            <h2 style="color: #FFD700; margin: 0 0 5px 0;">📊 Dashboard BeeMove - Estação Selecionada</h2>
+                            <p style="color: #ffffff; opacity: 0.8; margin: 0;">Dados em tempo real dos últimos 15 dias</p>
+                        </div>
+                        
+                        <div class="dashboard-grid">
+                            <!-- Left Panel - Concentração de Pólen -->
+                            <div class="dashboard-panel">
+                                <div class="dashboard-header">
+                                    <h3><i class="fas fa-seedling"></i> Concentração de Pólen</h3>
+                                    <p>Variação diária (grãos/m³)</p>
+                                </div>
+                                <div class="chart-content">
+                                    <canvas id="mapPollenChart"></canvas>
+                                </div>
+                                <div class="stats-bar">
+                                    <div class="stat-mini">
+                                        <span class="label">Média</span>
+                                        <span class="value" id="mapPollenAvg">0</span>
+                                    </div>
+                                    <div class="stat-mini">
+                                        <span class="label">Máximo</span>
+                                        <span class="value" id="mapPollenMax">0</span>
+                                    </div>
+                                    <div class="stat-mini">
+                                        <span class="label">Status</span>
+                                        <span class="value" id="mapPollenStatus">Normal</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Center Panel -->
+                            <div class="center-dashboard">
+                                <!-- Floração -->
+                                <div class="dashboard-panel">
+                                    <div class="dashboard-header">
+                                        <h3><i class="fas fa-flower"></i> Níveis de Floração</h3>
+                                        <p>Intensidade (%)</p>
+                                    </div>
+                                    <div class="chart-content small">
+                                        <canvas id="mapFloweringChart"></canvas>
+                                    </div>
+                                </div>
+                                
+                                <!-- Chuva -->
+                                <div class="dashboard-panel">
+                                    <div class="dashboard-header">
+                                        <h3><i class="fas fa-cloud-rain"></i> Índice Pluviométrico</h3>
+                                        <p>Precipitação (mm)</p>
+                                    </div>
+                                    <div class="chart-content small">
+                                        <canvas id="mapRainChart"></canvas>
+                                    </div>
+                                    <div class="stats-bar">
+                                        <div class="stat-mini">
+                                            <span class="label">Total</span>
+                                            <span class="value" id="mapRainTotal">0mm</span>
+                                        </div>
+                                        <div class="stat-mini">
+                                            <span class="label">Média</span>
+                                            <span class="value" id="mapRainAvg">0mm</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Right Panel - Dados Meteorológicos -->
+                            <div class="dashboard-panel">
+                                <div class="dashboard-header">
+                                    <h3><i class="fas fa-thermometer-half"></i> Dados Meteorológicos</h3>
+                                    <p>Médias do período (15 dias)</p>
+                                </div>
+                                <div style="padding: 15px;">
+                                    <div class="weather-mini">
+                                        <div class="weather-mini-icon" style="background: linear-gradient(135deg, #ff6b6b, #ff8e53);">
+                                            <i class="fas fa-temperature-high" style="color: white;"></i>
+                                        </div>
+                                        <div class="weather-mini-info">
+                                            <h5>Temperatura</h5>
+                                            <div class="main-val" id="mapTemp">24.5°C</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="weather-mini">
+                                        <div class="weather-mini-icon" style="background: linear-gradient(135deg, #4ecdc4, #44a08d);">
+                                            <i class="fas fa-tint" style="color: white;"></i>
+                                        </div>
+                                        <div class="weather-mini-info">
+                                            <h5>Umidade</h5>
+                                            <div class="main-val" id="mapHumidity">68%</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="weather-mini">
+                                        <div class="weather-mini-icon" style="background: linear-gradient(135deg, #a8edea, #fed6e3);">
+                                            <i class="fas fa-wind" style="color: #333;"></i>
+                                        </div>
+                                        <div class="weather-mini-info">
+                                            <h5>Vento</h5>
+                                            <div class="main-val" id="mapWind">12.8 km/h</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="weather-mini">
+                                        <div class="weather-mini-icon" style="background: linear-gradient(135deg, #d299c2, #fef9d7);">
+                                            <i class="fas fa-weight" style="color: #333;"></i>
+                                        </div>
+                                        <div class="weather-mini-info">
+                                            <h5>Pressão</h5>
+                                            <div class="main-val" id="mapPressure">1013.2 hPa</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="weather-mini">
+                                        <div class="weather-mini-icon" style="background: linear-gradient(135deg, #FFD700, #FFA500);">
+                                            <i class="fas fa-sun" style="color: #333;"></i>
+                                        </div>
+                                        <div class="weather-mini-info">
+                                            <h5>Índice UV</h5>
+                                            <div class="main-val" id="mapUV">7.2</div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="weather-mini">
+                                        <div class="weather-mini-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">
+                                            <i class="fas fa-eye" style="color: white;"></i>
+                                        </div>
+                                        <div class="weather-mini-info">
+                                            <h5>Visibilidade</h5>
+                                            <div class="main-val" id="mapVisibility">15.4 km</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -400,6 +700,148 @@
         </div>
     </footer>
 
+    <script src="dashboard-data.js"></script>
+    <script>
+        // Initialize dashboard data for map page
+        let mapDashboardData = null;
+        let mapCharts = {};
+        
+        function initializeMapDashboard() {
+            mapDashboardData = new DashboardData();
+            createMapCharts();
+            updateMapWeatherData();
+            updateMapStatistics();
+        }
+        
+        function generateStationData(stationId) {
+            // Generate unique data for each station
+            const variations = {
+                'station-1': { pollenMult: 1.2, flowerMult: 0.9, rainMult: 1.1, tempAdd: 2 },
+                'station-2': { pollenMult: 0.8, flowerMult: 1.3, rainMult: 1.5, tempAdd: 5 },
+                'station-3': { pollenMult: 1.1, flowerMult: 1.1, rainMult: 0.7, tempAdd: -3 }
+            };
+            
+            const variation = variations[stationId] || variations['station-1'];
+            
+            // Modify the base data
+            const pollenData = mapDashboardData.getPollenData();
+            pollenData.datasets[0].data = pollenData.datasets[0].data.map(val => 
+                Math.round(val * variation.pollenMult)
+            );
+            
+            const floweringData = mapDashboardData.getFloweringData();
+            floweringData.datasets[0].data = floweringData.datasets[0].data.map(val => 
+                Math.min(100, Math.round(val * variation.flowerMult))
+            );
+            
+            const rainData = mapDashboardData.getRainData();
+            rainData.datasets[0].data = rainData.datasets[0].data.map(val => 
+                Math.round(val * variation.rainMult * 10) / 10
+            );
+            
+            // Update weather data
+            const weather = mapDashboardData.getWeatherData();
+            weather.temperature.avg += variation.tempAdd;
+            weather.temperature.max += variation.tempAdd;
+            weather.temperature.min += variation.tempAdd;
+        }
+        
+        function createMapCharts() {
+            const baseOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(15, 20, 25, 0.9)',
+                        titleColor: '#FFD700',
+                        bodyColor: '#ffffff',
+                        borderColor: '#FFD700',
+                        borderWidth: 1,
+                        cornerRadius: 8,
+                        displayColors: false
+                    }
+                },
+                scales: {
+                    x: {
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#ffffff', maxTicksLimit: 8 }
+                    },
+                    y: {
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: '#ffffff' }
+                    }
+                }
+            };
+            
+            // Pollen Chart
+            const pollenCtx = document.getElementById('mapPollenChart').getContext('2d');
+            mapCharts.pollen = new Chart(pollenCtx, {
+                type: 'line',
+                data: mapDashboardData.getPollenData(),
+                options: {
+                    ...baseOptions,
+                    scales: {
+                        ...baseOptions.scales,
+                        y: { ...baseOptions.scales.y, beginAtZero: true, max: 600 }
+                    }
+                }
+            });
+            
+            // Flowering Chart
+            const floweringCtx = document.getElementById('mapFloweringChart').getContext('2d');
+            mapCharts.flowering = new Chart(floweringCtx, {
+                type: 'line',
+                data: mapDashboardData.getFloweringData(),
+                options: {
+                    ...baseOptions,
+                    scales: {
+                        ...baseOptions.scales,
+                        y: { ...baseOptions.scales.y, beginAtZero: true, max: 100 }
+                    }
+                }
+            });
+            
+            // Rain Chart
+            const rainCtx = document.getElementById('mapRainChart').getContext('2d');
+            mapCharts.rain = new Chart(rainCtx, {
+                type: 'bar',
+                data: mapDashboardData.getRainData(),
+                options: baseOptions
+            });
+        }
+        
+        function updateMapWeatherData() {
+            const weather = mapDashboardData.getWeatherData();
+            document.getElementById('mapTemp').textContent = `${weather.temperature.avg}°C`;
+            document.getElementById('mapHumidity').textContent = `${weather.humidity.avg}%`;
+            document.getElementById('mapWind').textContent = `${weather.wind.speed} km/h`;
+            document.getElementById('mapPressure').textContent = `${weather.pressure.avg} hPa`;
+            document.getElementById('mapUV').textContent = weather.uv.avg;
+            document.getElementById('mapVisibility').textContent = `${weather.visibility.avg} km`;
+        }
+        
+        function updateMapStatistics() {
+            const pollenStats = mapDashboardData.getPollenStats();
+            document.getElementById('mapPollenAvg').textContent = `${pollenStats.average}`;
+            document.getElementById('mapPollenMax').textContent = `${pollenStats.max}`;
+            
+            const statusElement = document.getElementById('mapPollenStatus');
+            statusElement.textContent = pollenStats.status;
+            
+            if (pollenStats.status === 'Alto') {
+                statusElement.style.color = '#ff6b6b';
+            } else if (pollenStats.status === 'Moderado') {
+                statusElement.style.color = '#FFD700';
+            } else {
+                statusElement.style.color = '#00ff88';
+            }
+            
+            const rainStats = mapDashboardData.getRainStats();
+            document.getElementById('mapRainTotal').textContent = `${rainStats.total}mm`;
+            document.getElementById('mapRainAvg').textContent = `${rainStats.average}mm`;
+        }
+    </script>
     <script>
         // Scroll animations for this page
         const observerOptions = {
@@ -421,7 +863,7 @@
         });
 
         // Dashboard toggle function
-        function toggleDashboard() {
+        function toggleDashboard(stationId) {
             const dashboard = document.getElementById('dashboardContainer');
             const textContent = document.getElementById('textContent');
             const contentSection = document.querySelector('.content-section');
@@ -440,6 +882,25 @@
                 // Show dashboard, hide text
                 dashboard.classList.add('show');
                 textContent.classList.add('hide');
+                
+                // Initialize dashboard if not already done
+                if (!mapDashboardData) {
+                    setTimeout(() => {
+                        initializeMapDashboard();
+                        if (stationId) {
+                            generateStationData(stationId);
+                            updateMapCharts();
+                            updateStationHeader(stationId);
+                        }
+                    }, 500);
+                } else {
+                    // Update with station-specific data
+                    if (stationId) {
+                        generateStationData(stationId);
+                        updateMapCharts();
+                        updateStationHeader(stationId);
+                    }
+                }
                 
                 // Highlight clicked bee
                 event.target.style.transform = 'scale(1.3)';
@@ -460,6 +921,40 @@
                         block: 'center'
                     });
                 }, 300);
+            }
+        }
+        
+        function updateMapCharts() {
+            if (mapCharts.pollen) {
+                mapCharts.pollen.data = mapDashboardData.getPollenData();
+                mapCharts.pollen.update('none');
+            }
+            
+            if (mapCharts.flowering) {
+                mapCharts.flowering.data = mapDashboardData.getFloweringData();
+                mapCharts.flowering.update('none');
+            }
+            
+            if (mapCharts.rain) {
+                mapCharts.rain.data = mapDashboardData.getRainData();
+                mapCharts.rain.update('none');
+            }
+            
+            updateMapWeatherData();
+            updateMapStatistics();
+        }
+        
+        function updateStationHeader(stationId) {
+            const stationNames = {
+                'station-1': 'SP-001 - São Paulo',
+                'station-2': 'RJ-002 - Rio de Janeiro', 
+                'station-3': 'MG-003 - Minas Gerais'
+            };
+            
+            const stationName = stationNames[stationId] || 'Estação Desconhecida';
+            const headerElement = document.querySelector('.map-dashboard-container h2');
+            if (headerElement) {
+                headerElement.innerHTML = `📊 Dashboard BeeMove - Estação ${stationName}`;
             }
         }
 
