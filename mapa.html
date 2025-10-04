@@ -115,18 +115,111 @@
         .single-map-container {
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 1200px;
             margin: 40px auto;
             border-radius: 15px;
             overflow: hidden;
             border: 3px solid #FFD700;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 600px;
+            cursor: grab;
+            user-select: none;
+        }
+        
+        .single-map-container:active {
+            cursor: grabbing;
+        }
+        
+        .map-content {
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            top: -50%;
+            left: -50%;
+            transform-origin: center;
+            transition: transform 0.3s ease;
         }
         
         .map-image {
             width: 100%;
-            height: 500px;
+            height: 100%;
             object-fit: cover;
+            display: block;
+        }
+        
+        .map-controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+        
+        .map-control-btn {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 215, 0, 0.9);
+            border: 2px solid #FFA000;
+            border-radius: 8px;
+            color: #2c2c2c;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .map-control-btn:hover {
+            background: rgba(255, 215, 0, 1);
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
+        }
+        
+        .map-control-btn:active {
+            transform: scale(0.95);
+        }
+        
+        .zoom-level {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(15, 20, 25, 0.9);
+            color: #FFD700;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border: 2px solid #FFD700;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+        
+        .reset-view {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: rgba(255, 215, 0, 0.9);
+            color: #2c2c2c;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #FFA000;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+        }
+        
+        .reset-view:hover {
+            background: rgba(255, 215, 0, 1);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 215, 0, 0.4);
         }
         
         .map-emoji {
@@ -139,11 +232,14 @@
             padding: 5px;
             border-radius: 50%;
             border: 2px solid transparent;
+            pointer-events: auto;
+            transform-origin: center;
         }
         
         .map-emoji:hover {
             transform: scale(1.2);
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            z-index: 20;
         }
         
         .alert-emoji {
@@ -208,8 +304,13 @@
         .dashboard-grid {
             display: grid;
             grid-template-columns: 2fr 1fr 1fr;
-            gap: 20px;
-            min-height: 500px;
+            grid-template-rows: 1.3fr 1fr;
+            gap: 15px;
+            min-height: 320px;
+            max-height: 500px;
+            grid-template-areas: 
+                "pollen pollen weather"
+                "flowering rain weather";
         }
         
         .dashboard-panel {
@@ -219,9 +320,25 @@
             overflow: hidden;
         }
         
+        .pollen-panel {
+            grid-area: pollen;
+        }
+        
+        .flowering-panel {
+            grid-area: flowering;
+        }
+        
+        .rain-panel {
+            grid-area: rain;
+        }
+        
+        .weather-panel {
+            grid-area: weather;
+        }
+        
         .dashboard-header {
             background: rgba(255, 215, 0, 0.15);
-            padding: 15px 20px;
+            padding: 10px 15px;
             border-bottom: 1px solid rgba(255, 215, 0, 0.3);
         }
         
@@ -242,12 +359,12 @@
         }
         
         .chart-content {
-            padding: 15px;
-            height: 300px;
+            padding: 12px;
+            height: 180px;
         }
         
         .chart-content.small {
-            height: 180px;
+            height: 130px;
         }
         
         .stats-bar {
@@ -277,53 +394,24 @@
             font-size: 1rem;
         }
         
-        .center-dashboard {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .center-dashboard .dashboard-panel {
-            flex: 1;
-        }
-        
-        .dashboard-loading {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 200px;
-            color: #FFD700;
-            font-size: 1.2rem;
-        }
-        
-        .dashboard-loading i {
-            margin-right: 10px;
-            animation: spin 1s linear infinite;
-        }
-        
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-        
         .weather-mini {
-            padding: 10px 15px;
+            padding: 8px 12px;
             background: rgba(255, 255, 255, 0.05);
             border-radius: 8px;
-            margin: 5px 0;
+            margin: 3px 0;
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         
         .weather-mini-icon {
-            width: 35px;
-            height: 35px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1rem;
+            font-size: 0.9rem;
         }
         
         .weather-mini-info {
@@ -345,26 +433,35 @@
         
         @media (max-width: 1024px) {
             .dashboard-grid {
-                grid-template-columns: 1fr;
-                gap: 15px;
-            }
-            
-            .center-dashboard {
-                flex-direction: row;
+                grid-template-columns: 1fr 1fr;
+                grid-template-rows: 1.1fr 0.9fr 0.9fr;
+                max-height: 420px;
+                grid-template-areas: 
+                    "pollen weather"
+                    "flowering weather"
+                    "rain weather";
             }
         }
         
         @media (max-width: 768px) {
-            .center-dashboard {
-                flex-direction: column;
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: auto auto auto auto;
+                max-height: none;
+                grid-template-areas: 
+                    "pollen"
+                    "flowering"
+                    "rain"
+                    "weather";
+                gap: 12px;
             }
             
             .chart-content {
-                height: 250px;
+                height: 180px;
             }
             
             .chart-content.small {
-                height: 200px;
+                height: 140px;
             }
         }
         
@@ -410,10 +507,14 @@
             
             .single-map-container {
                 margin: 20px auto;
+                height: 400px;
             }
             
-            .map-image {
-                height: 350px;
+            .map-content {
+                width: 250%;
+                height: 250%;
+                top: -75%;
+                left: -75%;
             }
             
             .map-emoji {
@@ -424,6 +525,36 @@
                 flex-direction: column;
                 align-items: center;
                 gap: 15px;
+            }
+            
+            .map-controls {
+                top: 10px;
+                right: 10px;
+                gap: 8px;
+            }
+            
+            .map-control-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .zoom-level {
+                bottom: 10px;
+                right: 10px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .reset-view {
+                bottom: 10px;
+                left: 10px;
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+            
+            .mobile-instruction {
+                display: inline-block !important;
             }
         }
     </style>
@@ -470,21 +601,56 @@
             <div style="text-align: center; margin: 40px 0 20px;">
                 <h2 style="color: #2c2c2c; margin-bottom: 15px;">�️ Mapa Global de Monitoramento BeeMove</h2>
                 <p style="color: #2c2c2c; opacity: 0.8;">Clique nos emojis de abelha para visualizar dados em tempo real</p>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
+                    <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c;">
+                        <i class="fas fa-mouse"></i> Arraste para navegar
+                    </span>
+                    <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c;">
+                        <i class="fas fa-search-plus"></i> Scroll para zoom
+                    </span>
+                    <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c;">
+                        <i class="fas fa-home"></i> Reset para centralizar
+                    </span>
+                    <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c; display: none;" class="mobile-instruction">
+                        <i class="fas fa-hand-point-up"></i> Duplo toque para zoom
+                    </span>
+                </div>
             </div>
 
             <!-- Single Map with Emojis -->
-            <div class="single-map-container">
-                <img src="./imagens/mapa.webp" alt="Mapa Global BeeMove" class="map-image">
+            <div class="single-map-container" id="mapContainer">
+                <!-- Map Content (Image + Emojis as one unit) -->
+                <div class="map-content" id="mapContent">
+                    <img src="./imagens/mapa.jpg" alt="Mapa Global BeeMove" class="map-image" id="mapImage">
+                    
+                    <!-- Alert Emojis (positioned across different regions) -->
+                    <div class="map-emoji alert-emoji" style="top: 25%; left: 15%;" title="Área com baixa polinização">⚠️</div>
+                    <div class="map-emoji alert-emoji" style="top: 40%; left: 70%;" title="Zona crítica de polinização">⚠️</div>
+                    <div class="map-emoji alert-emoji" style="top: 60%; left: 25%;" title="Região com déficit de pólen">⚠️</div>
+                    
+                    <!-- Bee Emojis (positioned in different regions) -->
+                    <div class="map-emoji bee-emoji" style="top: 30%; left: 45%;" onclick="event.stopPropagation(); toggleDashboard('station-1')" title="Estação BeeMove SP-001 - São Paulo" data-station="SP-001">🐝</div>
+                    <div class="map-emoji bee-emoji" style="top: 50%; left: 60%;" onclick="event.stopPropagation(); toggleDashboard('station-2')" title="Estação BeeMove RJ-002 - Rio de Janeiro" data-station="RJ-002">🐝</div>
+                    <div class="map-emoji bee-emoji" style="top: 70%; left: 40%;" onclick="event.stopPropagation(); toggleDashboard('station-3')" title="Estação BeeMove MG-003 - Minas Gerais" data-station="MG-003">🐝</div>
+                </div>
                 
-                <!-- Alert Emojis (positioned across different regions) -->
-                <div class="map-emoji alert-emoji" style="top: 25%; left: 15%;" title="Área com baixa polinização">⚠️</div>
-                <div class="map-emoji alert-emoji" style="top: 40%; left: 70%;" title="Zona crítica de polinização">⚠️</div>
-                <div class="map-emoji alert-emoji" style="top: 60%; left: 25%;" title="Região com déficit de pólen">⚠️</div>
+                <!-- Map Controls -->
+                <div class="map-controls">
+                    <button class="map-control-btn" onclick="zoomIn()" title="Zoom In">
+                        <i class="fas fa-plus"></i>
+                    </button>
+                    <button class="map-control-btn" onclick="zoomOut()" title="Zoom Out">
+                        <i class="fas fa-minus"></i>
+                    </button>
+                </div>
                 
-                <!-- Bee Emojis (positioned in different regions) -->
-                <div class="map-emoji bee-emoji" style="top: 30%; left: 45%;" onclick="toggleDashboard('station-1')" title="Estação BeeMove SP-001 - São Paulo" data-station="SP-001">🐝</div>
-                <div class="map-emoji bee-emoji" style="top: 50%; left: 60%;" onclick="toggleDashboard('station-2')" title="Estação BeeMove RJ-002 - Rio de Janeiro" data-station="RJ-002">🐝</div>
-                <div class="map-emoji bee-emoji" style="top: 70%; left: 40%;" onclick="toggleDashboard('station-3')" title="Estação BeeMove MG-003 - Minas Gerais" data-station="MG-003">🐝</div>
+                <!-- Zoom Level Indicator -->
+                <div class="zoom-level" id="zoomLevel">Zoom: 100%</div>
+                
+                <!-- Reset View Button -->
+                <div class="reset-view" onclick="resetView()" title="Reset View">
+                    <i class="fas fa-home"></i> Reset View
+                </div>
             </div>
 
             <!-- Legend -->
@@ -539,8 +705,8 @@
                         </div>
                         
                         <div class="dashboard-grid">
-                            <!-- Left Panel - Concentração de Pólen -->
-                            <div class="dashboard-panel">
+                            <!-- Concentração de Pólen - Ocupa toda a parte superior -->
+                            <div class="dashboard-panel pollen-panel">
                                 <div class="dashboard-header">
                                     <h3><i class="fas fa-seedling"></i> Concentração de Pólen</h3>
                                     <p>Variação diária (grãos/m³)</p>
@@ -564,48 +730,45 @@
                                 </div>
                             </div>
                             
-                            <!-- Center Panel -->
-                            <div class="center-dashboard">
-                                <!-- Floração -->
-                                <div class="dashboard-panel">
-                                    <div class="dashboard-header">
-                                        <h3><i class="fas fa-flower"></i> Níveis de Floração</h3>
-                                        <p>Intensidade (%)</p>
-                                    </div>
-                                    <div class="chart-content small">
-                                        <canvas id="mapFloweringChart"></canvas>
-                                    </div>
+                            <!-- Níveis de Floração - Inferior esquerda -->
+                            <div class="dashboard-panel flowering-panel">
+                                <div class="dashboard-header">
+                                    <h3><i class="fas fa-flower"></i> Níveis de Floração</h3>
+                                    <p>Intensidade (%)</p>
                                 </div>
-                                
-                                <!-- Chuva -->
-                                <div class="dashboard-panel">
-                                    <div class="dashboard-header">
-                                        <h3><i class="fas fa-cloud-rain"></i> Índice Pluviométrico</h3>
-                                        <p>Precipitação (mm)</p>
+                                <div class="chart-content small">
+                                    <canvas id="mapFloweringChart"></canvas>
+                                </div>
+                            </div>
+                            
+                            <!-- Índice Pluviométrico - Centro inferior -->
+                            <div class="dashboard-panel rain-panel">
+                                <div class="dashboard-header">
+                                    <h3><i class="fas fa-cloud-rain"></i> Índice Pluviométrico</h3>
+                                    <p>Precipitação (mm)</p>
+                                </div>
+                                <div class="chart-content small">
+                                    <canvas id="mapRainChart"></canvas>
+                                </div>
+                                <div class="stats-bar">
+                                    <div class="stat-mini">
+                                        <span class="label">Total</span>
+                                        <span class="value" id="mapRainTotal">0mm</span>
                                     </div>
-                                    <div class="chart-content small">
-                                        <canvas id="mapRainChart"></canvas>
-                                    </div>
-                                    <div class="stats-bar">
-                                        <div class="stat-mini">
-                                            <span class="label">Total</span>
-                                            <span class="value" id="mapRainTotal">0mm</span>
-                                        </div>
-                                        <div class="stat-mini">
-                                            <span class="label">Média</span>
-                                            <span class="value" id="mapRainAvg">0mm</span>
-                                        </div>
+                                    <div class="stat-mini">
+                                        <span class="label">Média</span>
+                                        <span class="value" id="mapRainAvg">0mm</span>
                                     </div>
                                 </div>
                             </div>
                             
-                            <!-- Right Panel - Dados Meteorológicos -->
-                            <div class="dashboard-panel">
+                            <!-- Dados Meteorológicos - Lado direito (ocupa toda altura) -->
+                            <div class="dashboard-panel weather-panel">
                                 <div class="dashboard-header">
                                     <h3><i class="fas fa-thermometer-half"></i> Dados Meteorológicos</h3>
                                     <p>Médias do período (15 dias)</p>
                                 </div>
-                                <div style="padding: 15px;">
+                                <div style="padding: 12px;">
                                     <div class="weather-mini">
                                         <div class="weather-mini-icon" style="background: linear-gradient(135deg, #ff6b6b, #ff8e53);">
                                             <i class="fas fa-temperature-high" style="color: white;"></i>
@@ -702,6 +865,222 @@
 
     <script src="dashboard-data.js"></script>
     <script>
+        // Map Navigation Variables
+        let currentZoom = 1;
+        let isDragging = false;
+        let startX, startY;
+        let translateX = 0, translateY = 0;
+        let mapContent, mapContainer;
+        
+        // Initialize map navigation
+        function initMapNavigation() {
+            mapContent = document.getElementById('mapContent');
+            mapContainer = document.getElementById('mapContainer');
+            
+            // Mouse events for desktop
+            mapContainer.addEventListener('mousedown', startDrag);
+            mapContainer.addEventListener('mousemove', drag);
+            mapContainer.addEventListener('mouseup', endDrag);
+            mapContainer.addEventListener('mouseleave', endDrag);
+            
+            // Touch events for mobile
+            mapContainer.addEventListener('touchstart', handleTouchStart, { passive: false });
+            mapContainer.addEventListener('touchmove', handleTouchMove, { passive: false });
+            mapContainer.addEventListener('touchend', handleTouchEnd);
+            
+            // Wheel event for zoom
+            mapContainer.addEventListener('wheel', handleWheel, { passive: false });
+            
+            // Double click for auto zoom
+            mapContainer.addEventListener('dblclick', handleDoubleClick);
+            
+            // Prevent context menu
+            mapContainer.addEventListener('contextmenu', (e) => e.preventDefault());
+        }
+        
+        // Mouse drag functions
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.clientX - translateX;
+            startY = e.clientY - translateY;
+            mapContainer.style.cursor = 'grabbing';
+        }
+        
+        function drag(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            
+            translateX = e.clientX - startX;
+            translateY = e.clientY - startY;
+            
+            updateMapTransform();
+        }
+        
+        function endDrag() {
+            isDragging = false;
+            mapContainer.style.cursor = 'grab';
+        }
+        
+        // Touch functions
+        function handleTouchStart(e) {
+            e.preventDefault();
+            const touch = e.touches[0];
+            startDrag({
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+        }
+        
+        function handleTouchMove(e) {
+            e.preventDefault();
+            if (!isDragging) return;
+            
+            const touch = e.touches[0];
+            drag({
+                preventDefault: () => {},
+                clientX: touch.clientX,
+                clientY: touch.clientY
+            });
+        }
+        
+        function handleTouchEnd(e) {
+            e.preventDefault();
+            endDrag();
+        }
+        
+        // Wheel zoom function
+        function handleWheel(e) {
+            e.preventDefault();
+            
+            const delta = e.deltaY > 0 ? -0.1 : 0.1;
+            const newZoom = Math.max(0.5, Math.min(3, currentZoom + delta));
+            
+            if (newZoom !== currentZoom) {
+                currentZoom = newZoom;
+                updateMapTransform();
+                updateZoomLevel();
+            }
+        }
+        
+        // Double click zoom function
+        function handleDoubleClick(e) {
+            e.preventDefault();
+            
+            if (currentZoom < 2) {
+                // Zoom in to 2x at the clicked position
+                const rect = mapContainer.getBoundingClientRect();
+                const clickX = e.clientX - rect.left - rect.width / 2;
+                const clickY = e.clientY - rect.top - rect.height / 2;
+                
+                translateX = -clickX * 0.5;
+                translateY = -clickY * 0.5;
+                currentZoom = 2;
+            } else {
+                // Reset to original view
+                resetView();
+                return;
+            }
+            
+            updateMapTransform();
+            updateZoomLevel();
+        }
+        
+        // Zoom functions
+        function zoomIn() {
+            if (currentZoom < 3) {
+                currentZoom = Math.min(3, currentZoom + 0.2);
+                updateMapTransform();
+                updateZoomLevel();
+            }
+        }
+        
+        function zoomOut() {
+            if (currentZoom > 0.5) {
+                currentZoom = Math.max(0.5, currentZoom - 0.2);
+                updateMapTransform();
+                updateZoomLevel();
+            }
+        }
+        
+        function resetView() {
+            currentZoom = 1;
+            translateX = 0;
+            translateY = 0;
+            updateMapTransform();
+            updateZoomLevel();
+        }
+        
+        // Update map transform
+        function updateMapTransform() {
+            // Enhanced constraints for better navigation
+            const containerRect = mapContainer.getBoundingClientRect();
+            const contentRect = mapContent.getBoundingClientRect();
+            
+            // Calculate maximum translation based on zoom and container size
+            const maxTranslateX = Math.max(0, (contentRect.width * currentZoom - containerRect.width) / (2 * currentZoom));
+            const maxTranslateY = Math.max(0, (contentRect.height * currentZoom - containerRect.height) / (2 * currentZoom));
+            
+            // Constrain translation
+            translateX = Math.max(-maxTranslateX, Math.min(maxTranslateX, translateX));
+            translateY = Math.max(-maxTranslateY, Math.min(maxTranslateY, translateY));
+            
+            // Apply smooth transform to the map content (image + emojis together)
+            mapContent.style.transform = `scale(${currentZoom}) translate(${translateX / currentZoom}px, ${translateY / currentZoom}px)`;
+            
+            // Update cursor based on zoom level
+            if (currentZoom > 1) {
+                mapContainer.style.cursor = isDragging ? 'grabbing' : 'grab';
+            } else {
+                mapContainer.style.cursor = 'default';
+            }
+        }
+        
+        // Update zoom level display with enhanced info
+        function updateZoomLevel() {
+            const zoomLevel = document.getElementById('zoomLevel');
+            const zoomPercent = Math.round(currentZoom * 100);
+            
+            let zoomText = `Zoom: ${zoomPercent}%`;
+            if (currentZoom >= 3) zoomText += ' (Máx)';
+            else if (currentZoom <= 0.5) zoomText += ' (Mín)';
+            
+            zoomLevel.textContent = zoomText;
+        }
+        
+        // Enhanced reset function with animation
+        function resetView() {
+            const steps = 20;
+            const startZoom = currentZoom;
+            const startX = translateX;
+            const startY = translateY;
+            
+            let step = 0;
+            const animate = () => {
+                step++;
+                const progress = step / steps;
+                
+                // Easing function for smooth animation
+                const easeOut = 1 - Math.pow(1 - progress, 3);
+                
+                currentZoom = startZoom + (1 - startZoom) * easeOut;
+                translateX = startX * (1 - easeOut);
+                translateY = startY * (1 - easeOut);
+                
+                updateMapTransform();
+                updateZoomLevel();
+                
+                if (step < steps) {
+                    requestAnimationFrame(animate);
+                }
+            };
+            
+            animate();
+        }
+        
+        // Initialize map navigation when page loads
+        document.addEventListener('DOMContentLoaded', () => {
+            initMapNavigation();
+        });
         // Initialize dashboard data for map page
         let mapDashboardData = null;
         let mapCharts = {};
@@ -864,6 +1243,12 @@
 
         // Dashboard toggle function
         function toggleDashboard(stationId) {
+            // Prevent event bubbling and map dragging
+            if (event) {
+                event.stopPropagation();
+                event.preventDefault();
+            }
+            
             const dashboard = document.getElementById('dashboardContainer');
             const textContent = document.getElementById('textContent');
             const contentSection = document.querySelector('.content-section');
@@ -903,12 +1288,14 @@
                 }
                 
                 // Highlight clicked bee
-                event.target.style.transform = 'scale(1.3)';
-                event.target.style.backgroundColor = 'rgba(255, 215, 0, 0.8)';
+                if (event && event.target) {
+                    event.target.style.transform = 'scale(1.3)';
+                    event.target.style.backgroundColor = 'rgba(255, 215, 0, 0.8)';
+                }
                 
                 // Reset other bees
                 document.querySelectorAll('.bee-emoji').forEach(bee => {
-                    if (bee !== event.target) {
+                    if (event && bee !== event.target) {
                         bee.style.transform = 'scale(1)';
                         bee.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
                     }
