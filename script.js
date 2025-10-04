@@ -44,3 +44,9 @@
                 `;
             }
         });
+
+        // NASA Worldview map function
+        function openNASAMap() {
+            const nasaMapUrl = "https://worldview.earthdata.nasa.gov/?v=-118.58532438941101,34.6197965887461,-118.12811960409199,34.821609638515824&l=Reference_Labels_15m,Reference_Features_15m(hidden),Coastlines_15m,HLS_S30_Nadir_BRDF_Adjusted_Reflectance(hidden),HLS_L30_Nadir_BRDF_Adjusted_Reflectance,VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor(hidden)&lg=true&l1=Reference_Labels_15m,Reference_Features_15m(hidden),Coastlines_15m,HLS_S30_Nadir_BRDF_Adjusted_Reflectance,HLS_L30_Nadir_BRDF_Adjusted_Reflectance,VIIRS_NOAA20_CorrectedReflectance_TrueColor(hidden),VIIRS_SNPP_CorrectedReflectance_TrueColor(hidden),MODIS_Aqua_CorrectedReflectance_TrueColor(hidden),MODIS_Terra_CorrectedReflectance_TrueColor(hidden)&lg1=true&ca=true&cv=53&t=2023-04-07-T02%3A00%3A00Z&t1=2020-04-18-T16%3A00%3A00Z";
+            window.open(nasaMapUrl, '_blank');
+        }

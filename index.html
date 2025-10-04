@@ -32,7 +32,7 @@
     <section class="hero">
         <div class="container">
             <h1>🐝 BeeMoves</h1>
-            <p>Monitoramento inteligente de pólen e proteção para pessoas alérgicas através de drones autônomos e análise fenológica global</p>
+            <p>Nossa solução une dados de satélite da NASA via Google Earth Engine e drones autônomos para detectar e validar áreas de baixa floração, acionando um módulo de dispersão de pólen que fecha lacunas de polinização, aumenta a produtividade e apoia a conservação ambiental.</p>
             <a href="#solucao" class="cta-button">
                 <i class="fas fa-rocket"></i> Descobrir a Solução
             </a>
@@ -45,8 +45,8 @@
             <h2 class="section-title">🌸 O Problema & Nossa Solução</h2>
             
             <div class="fade-in">
-                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto;">
-                    Milhões de pessoas sofrem com alergias ao pólen, mas não existe um sistema eficiente de monitoramento e alerta em tempo real. Nossa solução revoluciona esse cenário.
+                <p style="text-align: center; font-size: 1.2rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; color: #2c2c2c;">
+                    Nossa tecnologia revolucionária utiliza inteligência artificial e dados de satélite para otimizar a polinização e apoiar a biodiversidade global.
                 </p>
             </div>
 
@@ -99,12 +99,25 @@
             </p>
             
             <div class="map-container fade-in">
-                <div class="map-placeholder">
-                    <div style="text-align: center;">
-                        <i class="fas fa-map-marked-alt" style="font-size: 3rem; color: #f39c12; margin-bottom: 1rem;"></i>
-                        <h3>Mapa Interativo BeeMoves</h3>
-                        <p>Visualização em tempo real dos drones ativos, níveis de pólen e alertas regionais</p>
-                        <small style="opacity: 0.7;">* Integração com dados de satélites NASA e sensores terrestres</small>
+                <div class="nasa-map-preview" onclick="openNASAMap()">
+                    <div class="map-preview-content">
+                        <div class="map-icon">
+                            <i class="fas fa-satellite" style="font-size: 4rem; color: #FFD700; margin-bottom: 1rem;"></i>
+                        </div>
+                        <h3>🛰️ NASA Worldview - Dados Satelitais Reais</h3>
+                        <p>Visualização satelital com dados de fenologia e monitoramento ambiental</p>
+                        <div class="map-features">
+                            <span class="feature-tag">📊 Landsat HLS</span>
+                            <span class="feature-tag">🌍 VIIRS</span>
+                            <span class="feature-tag">🛰️ MODIS</span>
+                        </div>
+                        <button class="map-access-btn">
+                            <i class="fas fa-external-link-alt"></i>
+                            Acessar Mapa NASA Worldview
+                        </button>
+                        <small style="opacity: 0.8; display: block; margin-top: 10px;">
+                            * Clique para abrir o mapa interativo da NASA em nova aba
+                        </small>
                     </div>
                 </div>
             </div>
@@ -133,45 +146,57 @@
     <!-- Team Section -->
     <section id="equipe" class="team-section">
         <div class="container">
-            <h2 class="section-title">👥 Equipe Xurasteio Xurasgo</h2>
+            <h2 class="section-title">� Equipe BeeMove</h2>
             <p style="text-align: center; font-size: 1.2rem; margin-bottom: 1rem;">
                 NASA Space Apps Challenge 2024
             </p>
             
             <div class="team-grid">
                 <div class="team-member fade-in">
-                    <i class="fas fa-code"></i>
-                    <h3>Gustavo</h3>
-                    <p>Desenvolvedor</p>
-                </div>
-                
-                <div class="team-member fade-in">
-                    <i class="fas fa-code"></i>
-                    <h3>Luna</h3>
-                    <p>Desenvolvedora</p>
-                </div>
-                
-                <div class="team-member fade-in">
-                    <i class="fas fa-code"></i>
-                    <h3>Lucas</h3>
-                    <p>Desenvolvedor</p>
-                </div>
-                
-                <div class="team-member fade-in">
-                    <i class="fas fa-microscope"></i>
-                    <h3>Dantas</h3>
+                    <div class="member-photo">
+                        <img src="./imagens/gustavo.png" alt="Gustavo" class="member-img">
+                    </div>
+                    <h3>Gustavo Pires</h3>
                     <p>Biotécnico</p>
                 </div>
                 
                 <div class="team-member fade-in">
-                    <i class="fas fa-microscope"></i>
-                    <h3>Catarina</h3>
+                    <div class="member-photo">
+                        <img src="./imagens/raissalunana.png" alt="Luna" class="member-img">
+                    </div>
+                    <h3>Raissa Luna</h3>
+                    <p>Desenvolvedora</p>
+                </div>
+                
+                <div class="team-member fade-in">
+                    <div class="member-photo">
+                        <img src="./imagens/lhucas.jpg" alt="Lucas" class="member-img">
+                    </div>
+                    <h3>Lucas Julio</h3>
+                    <p>Desenvolvedor</p>
+                </div>
+                
+                <div class="team-member fade-in">
+                    <div class="member-photo">
+                        <img src="./imagens/dantas2.jpg" alt="Dantas" class="member-img">
+                    </div>
+                    <h3>Gabriel Dantas</h3>
+                    <p>Biotécnico</p>
+                </div>
+                
+                <div class="team-member fade-in">
+                    <div class="member-photo">
+                        <img src="./imagens/catarina.jpg" alt="Catarina" class="member-img">
+                    </div>
+                    <h3>Catarina Lemos</h3>
                     <p>Biotécnica</p>
                 </div>
                 
                 <div class="team-member fade-in">
-                    <i class="fas fa-microscope"></i>
-                    <h3>Rafaela</h3>
+                    <div class="member-photo">
+                        <img src="./imagens/rafaela.jpg" alt="Rafaela" class="member-img">
+                    </div>
+                    <h3>Rafaela Freire</h3>
                     <p>Biotécnica</p>
                 </div>
             </div>
@@ -183,7 +208,7 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>BeeMoves</h3>
+                    <h3>BeeMove</h3>
                     <p>Inovação em monitoramento de pólen e proteção alérgica através de tecnologia de drones inteligentes.</p>
                 </div>
                 
@@ -194,7 +219,7 @@
                 
                 <div class="footer-section">
                     <h3>Contato</h3>
-                    <p>Equipe Xurasteio Xurasgo</p>
+                    <p>Equipe BeeMove</p>
                     <div class="social-links">
                         <a href="#"><i class="fab fa-github"></i></a>
                         <a href="#"><i class="fab fa-linkedin"></i></a>
@@ -204,7 +229,7 @@
             </div>
             
             <div style="border-top: 1px solid #34495e; padding-top: 2rem; margin-top: 2rem;">
-                <p>&copy; 2024 BeeMoves - Xurasteio Xurasgo. Desenvolvido para NASA Space Apps Challenge.</p>
+                <p>&copy; 2024 BeeMoves - Equipe BeeMove. Desenvolvido para NASA Space Apps Challenge.</p>
             </div>
         </div>
     </footer>
