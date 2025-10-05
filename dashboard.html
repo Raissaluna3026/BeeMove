@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard BeeMove - Monitoramento Ambiental</title>
+    <title>BeeMove Dashboard - Environmental Monitoring</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="stylesheet" href="dashboard-style.css">
@@ -19,7 +19,7 @@
             <div class="header-info">
                 <span class="current-date" id="currentDate"></span>
                 <button class="back-btn" onclick="window.location.href='index.html'">
-                    <i class="fas fa-arrow-left"></i> Voltar
+                    <i class="fas fa-arrow-left"></i> Back
                 </button>
             </div>
         </div>
@@ -30,19 +30,19 @@
         <!-- Left Panel - Concentração de Pólen -->
         <div class="left-panel">
             <div class="panel-header">
-                <h2><i class="fas fa-seedling"></i> Concentração de Pólen</h2>
-                <p>Variação diária nos últimos 15 dias</p>
+                <h2><i class="fas fa-seedling"></i> Pollen Concentration</h2>
+                <p>Daily variation over the last 15 days</p>
             </div>
             <div class="chart-container">
                 <canvas id="pollenChart"></canvas>
             </div>
             <div class="pollen-stats">
                 <div class="stat-item">
-                    <span class="stat-label">Média Atual</span>
+                    <span class="stat-label">Current Average</span>
                     <span class="stat-value" id="pollenAverage">0</span>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-label">Pico Máximo</span>
+                    <span class="stat-label">Peak Maximum</span>
                     <span class="stat-value" id="pollenMax">0</span>
                 </div>
                 <div class="stat-item">
@@ -57,8 +57,8 @@
             <!-- Top - Níveis de Floração -->
             <div class="flowering-section">
                 <div class="panel-header">
-                    <h3><i class="fas fa-flower"></i> Níveis de Floração</h3>
-                    <p>Intensidade de floração por período</p>
+                    <h3><i class="fas fa-flower"></i> Flowering Levels</h3>
+                    <p>Flowering intensity by period</p>
                 </div>
                 <div class="chart-container small">
                     <canvas id="floweringChart"></canvas>
@@ -68,8 +68,8 @@
             <!-- Bottom - Índice Pluviométrico -->
             <div class="rain-section">
                 <div class="panel-header">
-                    <h3><i class="fas fa-cloud-rain"></i> Índice Pluviométrico</h3>
-                    <p>Precipitação nos últimos 15 dias (mm)</p>
+                    <h3><i class="fas fa-cloud-rain"></i> Precipitation Index</h3>
+                    <p>Precipitation in the last 15 days (mm)</p>
                 </div>
                 <div class="chart-container small">
                     <canvas id="rainChart"></canvas>
@@ -80,7 +80,7 @@
                         <span class="summary-value" id="rainTotal">0mm</span>
                     </div>
                     <div class="summary-item">
-                        <span class="summary-label">Média Diária</span>
+                        <span class="summary-label">Daily Average</span>
                         <span class="summary-value" id="rainAverage">0mm</span>
                     </div>
                 </div>
@@ -90,8 +90,8 @@
         <!-- Right Panel - Dados Meteorológicos -->
         <div class="right-panel">
             <div class="panel-header">
-                <h2><i class="fas fa-thermometer-half"></i> Dados Meteorológicos</h2>
-                <p>Médias do período (15 dias)</p>
+                <h2><i class="fas fa-thermometer-half"></i> Meteorological Data</h2>
+                <p>Period averages (15 days)</p>
             </div>
             
             <div class="weather-cards">
@@ -100,12 +100,12 @@
                         <i class="fas fa-temperature-high"></i>
                     </div>
                     <div class="weather-info">
-                        <h4>Temperatura</h4>
+                        <h4>Temperature</h4>
                         <div class="weather-values">
                             <span class="main-value" id="avgTemp">0°C</span>
                             <div class="sub-values">
-                                <span>Máx: <span id="maxTemp">0°C</span></span>
-                                <span>Mín: <span id="minTemp">0°C</span></span>
+                                <span>Max: <span id="maxTemp">0°C</span></span>
+                                <span>Min: <span id="minTemp">0°C</span></span>
                             </div>
                         </div>
                     </div>
@@ -116,7 +116,7 @@
                         <i class="fas fa-tint"></i>
                     </div>
                     <div class="weather-info">
-                        <h4>Umidade</h4>
+                        <h4>Humidity</h4>
                         <div class="weather-values">
                             <span class="main-value" id="avgHumidity">0%</span>
                             <div class="progress-bar">
@@ -131,7 +131,7 @@
                         <i class="fas fa-wind"></i>
                     </div>
                     <div class="weather-info">
-                        <h4>Vento</h4>
+                        <h4>Wind</h4>
                         <div class="weather-values">
                             <span class="main-value" id="avgWind">0 km/h</span>
                             <div class="wind-direction">
@@ -147,12 +147,12 @@
                         <i class="fas fa-weight"></i>
                     </div>
                     <div class="weather-info">
-                        <h4>Pressão</h4>
+                        <h4>Pressure</h4>
                         <div class="weather-values">
                             <span class="main-value" id="avgPressure">0 hPa</span>
                             <div class="pressure-trend">
                                 <i class="fas fa-arrow-up" id="pressureTrend"></i>
-                                <span id="pressureTrendText">Estável</span>
+                                <span id="pressureTrendText">Stable</span>
                             </div>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                         <i class="fas fa-sun"></i>
                     </div>
                     <div class="weather-info">
-                        <h4>Índice UV</h4>
+                        <h4>UV Index</h4>
                         <div class="weather-values">
                             <span class="main-value" id="avgUV">0</span>
                             <div class="uv-level">
@@ -178,7 +178,7 @@
                         <i class="fas fa-eye"></i>
                     </div>
                     <div class="weather-info">
-                        <h4>Visibilidade</h4>
+                        <h4>Visibility</h4>
                         <div class="weather-values">
                             <span class="main-value" id="avgVisibility">0 km</span>
                         </div>
@@ -189,7 +189,7 @@
             <!-- Alert Section -->
             <div class="alert-section">
                 <div class="alert-header">
-                    <h4><i class="fas fa-exclamation-triangle"></i> Alertas</h4>
+                    <h4><i class="fas fa-exclamation-triangle"></i> Alerts</h4>
                 </div>
                 <div class="alerts-container" id="alertsContainer">
                     <!-- Alertas serão inseridos dinamicamente -->
@@ -202,7 +202,7 @@
     <div class="loading-overlay" id="loadingOverlay">
         <div class="loading-spinner">
             <i class="fas fa-drone"></i>
-            <p>Carregando dados do dashboard...</p>
+            <p>Loading dashboard data...</p>
         </div>
     </div>
 

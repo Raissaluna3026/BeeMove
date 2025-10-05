@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BeeMove - Mapa Interativo | Monitoramento Global</title>
+    <title>BeeMove - Interactive Map | Global Monitoring</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -570,10 +570,10 @@
                 </div>
                 <nav>
                     <ul class="nav-links">
-                        <li><a href="./index.html#solucao">Solução</a></li>
-                        <li><a href="./index.html#mapa">Mapa Global</a></li>
+                        <li><a href="./index.html#solution">Solution</a></li>
+                        <li><a href="./index.html#map">Global Map</a></li>
                         <li><a href="./index.html#video">Demo</a></li>
-                        <li><a href="./index.html#equipe">Equipe</a></li>
+                        <li><a href="./index.html#team">Team</a></li>
                     </ul>
                 </nav>
             </div>
@@ -585,11 +585,11 @@
         <div class="container">
             <a href="./index.html" class="back-button">
                 <i class="fas fa-arrow-left"></i>
-                Voltar ao Site Principal
+                Back to Main Site
             </a>
-            <h1 style="color: #2c2c2c; margin: 20px 0;">🌍 Mapa Interativo BeeMove</h1>
+            <h1 style="color: #2c2c2c; margin: 20px 0;">🌍 BeeMove Interactive Map</h1>
             <p style="color: #2c2c2c; font-size: 1.2rem; max-width: 800px; margin: 0 auto;">
-                Monitoramento em tempo real da fenologia de floração e dados satelitais integrados da NASA
+                Real-time monitoring of flowering phenology and integrated NASA satellite data
             </p>
         </div>
     </section>
@@ -599,7 +599,7 @@
         <div class="container">
             <!-- Map Title -->
             <div style="text-align: center; margin: 40px 0 20px;">
-                <h2 style="color: #2c2c2c; margin-bottom: 15px;">�️ Mapa Global de Monitoramento BeeMove</h2>
+                <h2 style="color: #2c2c2c; margin-bottom: 15px;">�️ BeeMove Global Monitoring Map</h2>
                 <p style="color: #2c2c2c; opacity: 0.8;">Clique nos emojis de abelha para visualizar dados em tempo real</p>
                 <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
                     <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c;">
@@ -624,14 +624,14 @@
                     <img src="./imagens/mapa.jpg" alt="Mapa Global BeeMove" class="map-image" id="mapImage">
                     
                     <!-- Alert Emojis (positioned across different regions) -->
-                    <div class="map-emoji alert-emoji" style="top: 25%; left: 15%;" title="Área com baixa polinização">⚠️</div>
-                    <div class="map-emoji alert-emoji" style="top: 40%; left: 70%;" title="Zona crítica de polinização">⚠️</div>
-                    <div class="map-emoji alert-emoji" style="top: 60%; left: 25%;" title="Região com déficit de pólen">⚠️</div>
+                    <div class="map-emoji alert-emoji" style="top: 25%; left: 15%;" title="Area with low pollination">⚠️</div>
+                    <div class="map-emoji alert-emoji" style="top: 40%; left: 70%;" title="Critical pollination zone">⚠️</div>
+                    <div class="map-emoji alert-emoji" style="top: 60%; left: 25%;" title="Region with pollen deficit">⚠️</div>
                     
                     <!-- Bee Emojis (positioned in different regions) -->
-                    <div class="map-emoji bee-emoji" style="top: 30%; left: 45%;" onclick="event.stopPropagation(); toggleDashboard('station-1')" title="Estação BeeMove SP-001 - São Paulo" data-station="SP-001">🐝</div>
-                    <div class="map-emoji bee-emoji" style="top: 50%; left: 60%;" onclick="event.stopPropagation(); toggleDashboard('station-2')" title="Estação BeeMove RJ-002 - Rio de Janeiro" data-station="RJ-002">🐝</div>
-                    <div class="map-emoji bee-emoji" style="top: 70%; left: 40%;" onclick="event.stopPropagation(); toggleDashboard('station-3')" title="Estação BeeMove MG-003 - Minas Gerais" data-station="MG-003">🐝</div>
+                    <div class="map-emoji bee-emoji" style="top: 30%; left: 45%;" onclick="event.stopPropagation(); toggleDashboard('station-1')" title="BeeMove Station SP-001 - São Paulo" data-station="SP-001">🐝</div>
+                    <div class="map-emoji bee-emoji" style="top: 50%; left: 60%;" onclick="event.stopPropagation(); toggleDashboard('station-2')" title="BeeMove Station RJ-002 - Rio de Janeiro" data-station="RJ-002">🐝</div>
+                    <div class="map-emoji bee-emoji" style="top: 70%; left: 40%;" onclick="event.stopPropagation(); toggleDashboard('station-3')" title="BeeMove Station MG-003 - Minas Gerais" data-station="MG-003">🐝</div>
                 </div>
                 
                 <!-- Map Controls -->
@@ -657,11 +657,11 @@
             <div class="legend-container">
                 <div class="legend-item">
                     <span class="legend-emoji">⚠️</span>
-                    <span>Áreas com Baixa Polinização</span>
+                    <span>Areas with Low Pollination</span>
                 </div>
                 <div class="legend-item">
                     <span class="legend-emoji">🐝</span>
-                    <span>Estações BeeMove Ativas (Clicável)</span>
+                    <span>Active BeeMove Stations (Clickable)</span>
                 </div>
             </div>
 
@@ -672,27 +672,27 @@
                     <h3 style="color: #2c2c2c; text-align: center; margin-bottom: 25px;">� O Problema Crítico da Baixa Polinização</h3>
                     
                     <p style="color: #2c2c2c; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px;">
-                        <strong>A baixa floração e polinização representa uma das maiores ameaças ambientais e econômicas da atualidade.</strong> 
-                        O declínio das populações de polinizadores, especialmente abelhas, tem causado impactos devastadores em escala global, 
-                        afetando diretamente a produção alimentar, a biodiversidade e a economia mundial.
+                        <strong>Low flowering and pollination represents one of the greatest environmental and economic threats of our time.</strong> 
+                        The decline in pollinator populations, especially bees, has caused devastating impacts on a global scale, 
+                        directly affecting food production, biodiversity, and the world economy.
                     </p>
                     
                     <p style="color: #2c2c2c; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px;">
-                        <strong>💰 Impactos Econômicos:</strong> O valor econômico da polinização é estimado em mais de $200 bilhões anuais globalmente. 
-                        A perda de polinizadores causa quedas drásticas na produtividade agrícola, falência de produtores rurais, 
-                        desemprego no setor agrícola e instabilidade nos mercados de commodities alimentares.
+                        <strong>💰 Economic Impacts:</strong> The economic value of pollination is estimated at more than $200 billion annually globally. 
+                        The loss of pollinators causes drastic drops in agricultural productivity, bankruptcy of rural producers, 
+                        unemployment in the agricultural sector, and instability in food commodity markets.
                     </p>
                     
                     <p style="color: #2c2c2c; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px;">
-                        <strong>👥 Impactos Sociais:</strong> Mais de 35% da produção alimentar global depende da polinização. 
-                        A redução deste serviço ecossistêmico resulta em insegurança alimentar, aumento dos preços dos alimentos 
-                        e ameaças à nutrição de bilhões de pessoas, especialmente em comunidades vulneráveis.
+                        <strong>👥 Social Impacts:</strong> More than 35% of global food production depends on pollination. 
+                        The reduction of this ecosystem service results in food insecurity, increased food prices, 
+                        and threats to the nutrition of billions of people, especially in vulnerable communities.
                     </p>
                     
                     <p style="color: #2c2c2c; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 0;">
-                        <strong>🔬 A Solução BeeMove:</strong> Nossa tecnologia utiliza dados satelitais da NASA e drones autônomos 
-                        para mapear áreas de baixa floração, detectar lacunas de polinização e implementar soluções precisas 
-                        de redistribuição de pólen, restaurando o equilíbrio ecológico e garantindo a segurança alimentar.
+                        <strong>🔬 The BeeMove Solution:</strong> Our technology uses NASA satellite data and autonomous drones 
+                        to map areas of low flowering, detect pollination gaps, and implement precise solutions 
+                        for pollen redistribution, restoring ecological balance and ensuring food security.
                     </p>
                 </div>
 
@@ -700,27 +700,27 @@
                 <div id="dashboardContainer" class="dashboard-container">
                     <div class="map-dashboard-container">
                         <div style="text-align: center; margin-bottom: 20px;">
-                            <h2 style="color: #FFD700; margin: 0 0 5px 0;">📊 Dashboard BeeMove - Estação Selecionada</h2>
-                            <p style="color: #ffffff; opacity: 0.8; margin: 0;">Dados em tempo real dos últimos 15 dias</p>
+                            <h2 style="color: #FFD700; margin: 0 0 5px 0;">📊 BeeMove Dashboard - Selected Station</h2>
+                            <p style="color: #ffffff; opacity: 0.8; margin: 0;">Real-time data from the last 15 days</p>
                         </div>
                         
                         <div class="dashboard-grid">
                             <!-- Concentração de Pólen - Ocupa toda a parte superior -->
                             <div class="dashboard-panel pollen-panel">
                                 <div class="dashboard-header">
-                                    <h3><i class="fas fa-seedling"></i> Concentração de Pólen</h3>
-                                    <p>Variação diária (grãos/m³)</p>
+                                    <h3><i class="fas fa-seedling"></i> Pollen Concentration</h3>
+                                    <p>Daily variation (grains/m³)</p>
                                 </div>
                                 <div class="chart-content">
                                     <canvas id="mapPollenChart"></canvas>
                                 </div>
                                 <div class="stats-bar">
                                     <div class="stat-mini">
-                                        <span class="label">Média</span>
+                                        <span class="label">Average</span>
                                         <span class="value" id="mapPollenAvg">0</span>
                                     </div>
                                     <div class="stat-mini">
-                                        <span class="label">Máximo</span>
+                                        <span class="label">Maximum</span>
                                         <span class="value" id="mapPollenMax">0</span>
                                     </div>
                                     <div class="stat-mini">
@@ -733,8 +733,8 @@
                             <!-- Níveis de Floração - Inferior esquerda -->
                             <div class="dashboard-panel flowering-panel">
                                 <div class="dashboard-header">
-                                    <h3><i class="fas fa-flower"></i> Níveis de Floração</h3>
-                                    <p>Intensidade (%)</p>
+                                    <h3><i class="fas fa-flower"></i> Flowering Levels</h3>
+                                    <p>Intensity (%)</p>
                                 </div>
                                 <div class="chart-content small">
                                     <canvas id="mapFloweringChart"></canvas>
@@ -744,8 +744,8 @@
                             <!-- Índice Pluviométrico - Centro inferior -->
                             <div class="dashboard-panel rain-panel">
                                 <div class="dashboard-header">
-                                    <h3><i class="fas fa-cloud-rain"></i> Índice Pluviométrico</h3>
-                                    <p>Precipitação (mm)</p>
+                                    <h3><i class="fas fa-cloud-rain"></i> Precipitation Index</h3>
+                                    <p>Precipitation (mm)</p>
                                 </div>
                                 <div class="chart-content small">
                                     <canvas id="mapRainChart"></canvas>
@@ -756,7 +756,7 @@
                                         <span class="value" id="mapRainTotal">0mm</span>
                                     </div>
                                     <div class="stat-mini">
-                                        <span class="label">Média</span>
+                                        <span class="label">Average</span>
                                         <span class="value" id="mapRainAvg">0mm</span>
                                     </div>
                                 </div>
@@ -765,8 +765,8 @@
                             <!-- Dados Meteorológicos - Lado direito (ocupa toda altura) -->
                             <div class="dashboard-panel weather-panel">
                                 <div class="dashboard-header">
-                                    <h3><i class="fas fa-thermometer-half"></i> Dados Meteorológicos</h3>
-                                    <p>Médias do período (15 dias)</p>
+                                    <h3><i class="fas fa-thermometer-half"></i> Meteorological Data</h3>
+                                    <p>Period averages (15 days)</p>
                                 </div>
                                 <div style="padding: 12px;">
                                     <div class="weather-mini">
@@ -774,7 +774,7 @@
                                             <i class="fas fa-temperature-high" style="color: white;"></i>
                                         </div>
                                         <div class="weather-mini-info">
-                                            <h5>Temperatura</h5>
+                                            <h5>Temperature</h5>
                                             <div class="main-val" id="mapTemp">24.5°C</div>
                                         </div>
                                     </div>
@@ -784,7 +784,7 @@
                                             <i class="fas fa-tint" style="color: white;"></i>
                                         </div>
                                         <div class="weather-mini-info">
-                                            <h5>Umidade</h5>
+                                            <h5>Humidity</h5>
                                             <div class="main-val" id="mapHumidity">68%</div>
                                         </div>
                                     </div>
@@ -794,7 +794,7 @@
                                             <i class="fas fa-wind" style="color: #333;"></i>
                                         </div>
                                         <div class="weather-mini-info">
-                                            <h5>Vento</h5>
+                                            <h5>Wind</h5>
                                             <div class="main-val" id="mapWind">12.8 km/h</div>
                                         </div>
                                     </div>
@@ -804,7 +804,7 @@
                                             <i class="fas fa-weight" style="color: #333;"></i>
                                         </div>
                                         <div class="weather-mini-info">
-                                            <h5>Pressão</h5>
+                                            <h5>Pressure</h5>
                                             <div class="main-val" id="mapPressure">1013.2 hPa</div>
                                         </div>
                                     </div>
@@ -814,7 +814,7 @@
                                             <i class="fas fa-sun" style="color: #333;"></i>
                                         </div>
                                         <div class="weather-mini-info">
-                                            <h5>Índice UV</h5>
+                                            <h5>UV Index</h5>
                                             <div class="main-val" id="mapUV">7.2</div>
                                         </div>
                                     </div>
@@ -824,7 +824,7 @@
                                             <i class="fas fa-eye" style="color: white;"></i>
                                         </div>
                                         <div class="weather-mini-info">
-                                            <h5>Visibilidade</h5>
+                                            <h5>Visibility</h5>
                                             <div class="main-val" id="mapVisibility">15.4 km</div>
                                         </div>
                                     </div>
@@ -838,7 +838,7 @@
             <div style="text-align: center; margin-top: 40px;">
                 <p style="color: #2c2c2c; opacity: 0.7;">
                     <i class="fas fa-satellite"></i>
-                    <strong>Tecnologia:</strong> Sistema integrado com dados NASA EOSDIS e Google Earth Engine para monitoramento global
+                    <strong>Technology:</strong> Integrated system with NASA EOSDIS data and Google Earth Engine for global monitoring
                 </p>
             </div>
         </div>
@@ -848,8 +848,8 @@
     <footer>
         <div class="container">
             <div style="text-align: center;">
-                <h3 style="color: #FFD700; margin-bottom: 1rem;">BeeMove - Mapa Interativo</h3>
-                <p>Monitoramento global de polinização através de tecnologia satelital da NASA</p>
+                <h3 style="color: #FFD700; margin-bottom: 1rem;">BeeMove - Interactive Map</h3>
+                <p>Global pollination monitoring through NASA satellite technology</p>
                 <div class="social-links" style="margin-top: 1rem;">
                     <a href="./index.html"><i class="fas fa-home"></i></a>
                     <a href="#"><i class="fab fa-github"></i></a>
@@ -858,7 +858,7 @@
             </div>
             
             <div style="border-top: 1px solid #444; padding-top: 2rem; margin-top: 2rem; text-align: center;">
-                <p>&copy; 2024 BeeMove - Equipe BeeMove. NASA Space Apps Challenge 2024.</p>
+                <p>&copy; 2024 BeeMove - BeeMove Team. NASA Space Apps Challenge 2024.</p>
             </div>
         </div>
     </footer>

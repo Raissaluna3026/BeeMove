@@ -1,18 +1,18 @@
-// Dashboard Data Module - Dados mockados para 15 dias
+// Dashboard Data Module - Mock data for 15 days
 class DashboardData {
     constructor() {
         this.generateMockData();
     }
 
     generateMockData() {
-        // Gerar datas dos últimos 15 dias
+        // Generate dates for the last 15 days
         this.dates = this.generateDates(15);
         
-        // Dados de concentração de pólen (grãos/m³)
+        // Pollen concentration data (grains/m³)
         this.pollenData = {
             labels: this.dates,
             datasets: [{
-                label: 'Concentração de Pólen (grãos/m³)',
+                label: 'Pollen Concentration (grains/m³)',
                 data: [
                     245, 312, 428, 156, 289, 367, 445, 523, 389, 298,
                     234, 345, 467, 398, 312
@@ -30,11 +30,11 @@ class DashboardData {
             }]
         };
 
-        // Dados de níveis de floração (0-100%)
+        // Flowering level data (0-100%)
         this.floweringData = {
             labels: this.dates,
             datasets: [{
-                label: 'Nível de Floração (%)',
+                label: 'Flowering Level (%)',
                 data: [
                     65, 72, 85, 45, 58, 78, 92, 88, 76, 63,
                     54, 69, 83, 79, 67
@@ -51,11 +51,11 @@ class DashboardData {
             }]
         };
 
-        // Dados de índice pluviométrico (mm)
+        // Precipitation index data (mm)
         this.rainData = {
             labels: this.dates,
             datasets: [{
-                label: 'Precipitação (mm)',
+                label: 'Precipitation (mm)',
                 data: [
                     0, 12.5, 8.2, 0, 15.7, 3.4, 0, 22.1, 7.8, 0,
                     4.3, 18.9, 0, 9.6, 1.2
@@ -68,7 +68,7 @@ class DashboardData {
             }]
         };
 
-        // Dados meteorológicos médios (para todo o período)
+        // Average meteorological data (for the entire period)
         this.weatherData = {
             temperature: {
                 avg: 24.5,
@@ -96,30 +96,30 @@ class DashboardData {
             }
         };
 
-        // Alertas mockados
+        // Mock alerts
         this.alerts = [
             {
                 id: 1,
                 type: 'warning',
                 icon: 'fas fa-exclamation-triangle',
-                message: 'Alto nível de pólen detectado - Risco para alérgicos',
-                time: '2 horas atrás',
+                message: 'High pollen level detected - Risk for allergic individuals',
+                time: '2 hours ago',
                 priority: 'high'
             },
             {
                 id: 2,
                 type: 'info',
                 icon: 'fas fa-cloud-rain',
-                message: 'Previsão de chuva nas próximas 6 horas',
-                time: '4 horas atrás',
+                message: 'Rain forecast for the next 6 hours',
+                time: '4 hours ago',
                 priority: 'medium'
             },
             {
                 id: 3,
                 type: 'success',
                 icon: 'fas fa-leaf',
-                message: 'Condições ideais para atividade de polinização',
-                time: '1 dia atrás',
+                message: 'Ideal conditions for pollination activity',
+                time: '1 day ago',
                 priority: 'low'
             }
         ];
@@ -141,7 +141,7 @@ class DashboardData {
         return dates;
     }
 
-    // Métodos para obter dados específicos
+    // Methods to get specific data
     getPollenData() {
         return this.pollenData;
     }
@@ -162,15 +162,15 @@ class DashboardData {
         return this.alerts;
     }
 
-    // Calcular estatísticas
+    // Calculate statistics
     getPollenStats() {
         const data = this.pollenData.datasets[0].data;
         const average = Math.round(data.reduce((a, b) => a + b, 0) / data.length);
         const max = Math.max(...data);
         
         let status = 'Normal';
-        if (average > 350) status = 'Alto';
-        else if (average > 250) status = 'Moderado';
+        if (average > 350) status = 'High';
+        else if (average > 250) status = 'Moderate';
         
         return { average, max, status };
     }
@@ -183,24 +183,24 @@ class DashboardData {
         return { total, average };
     }
 
-    // Simular atualização de dados em tempo real
+    // Simulate real-time data updates
     updateData() {
-        // Atualizar dados de pólen
+        // Update pollen data
         const pollenDataset = this.pollenData.datasets[0];
-        pollenDataset.data.shift(); // Remove primeiro elemento
-        pollenDataset.data.push(Math.floor(Math.random() * 400) + 100); // Adiciona novo
+        pollenDataset.data.shift(); // Remove first element
+        pollenDataset.data.push(Math.floor(Math.random() * 400) + 100); // Add new
 
-        // Atualizar dados de floração
+        // Update flowering data
         const floweringDataset = this.floweringData.datasets[0];
         floweringDataset.data.shift();
         floweringDataset.data.push(Math.floor(Math.random() * 50) + 40);
 
-        // Atualizar dados de chuva
+        // Update rain data
         const rainDataset = this.rainData.datasets[0];
         rainDataset.data.shift();
         rainDataset.data.push(Math.round(Math.random() * 25 * 10) / 10);
 
-        // Atualizar datas
+        // Update dates
         this.dates.shift();
         const today = new Date();
         this.dates.push(today.toLocaleDateString('pt-BR', { 
@@ -208,31 +208,31 @@ class DashboardData {
             month: '2-digit' 
         }));
 
-        // Atualizar labels dos gráficos
+        // Update chart labels
         this.pollenData.labels = [...this.dates];
         this.floweringData.labels = [...this.dates];
         this.rainData.labels = [...this.dates];
     }
 
-    // Simular novos alertas
+    // Simulate new alerts
     addRandomAlert() {
         const alertTypes = [
             {
                 type: 'warning',
                 icon: 'fas fa-exclamation-triangle',
-                message: 'Condições meteorológicas adversas detectadas',
+                message: 'Adverse weather conditions detected',
                 priority: 'high'
             },
             {
                 type: 'info',
                 icon: 'fas fa-wind',
-                message: 'Ventos fortes podem afetar dispersão de pólen',
+                message: 'Strong winds may affect pollen dispersal',
                 priority: 'medium'
             },
             {
                 type: 'success',
                 icon: 'fas fa-check-circle',
-                message: 'Sistema de monitoramento funcionando normalmente',
+                message: 'Monitoring system operating normally',
                 priority: 'low'
             }
         ];
@@ -241,12 +241,12 @@ class DashboardData {
         const newAlert = {
             id: Date.now(),
             ...randomAlert,
-            time: 'Agora',
+            time: 'Now',
         };
 
         this.alerts.unshift(newAlert);
         
-        // Manter apenas os 5 alertas mais recentes
+        // Keep only the 5 most recent alerts
         if (this.alerts.length > 5) {
             this.alerts = this.alerts.slice(0, 5);
         }
@@ -254,7 +254,7 @@ class DashboardData {
         return newAlert;
     }
 
-    // Configurações dos gráficos
+    // Chart settings
     getChartOptions(type) {
         const baseOptions = {
             responsive: true,
@@ -317,5 +317,5 @@ class DashboardData {
     }
 }
 
-// Exportar para uso global
+// Export for global use
 window.DashboardData = DashboardData;

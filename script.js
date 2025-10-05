@@ -38,9 +38,9 @@
                 videoContainer.innerHTML = `
                     <video controls style="width: 100%; max-width: 600px; border-radius: 10px;">
                         <source src="${URL.createObjectURL(file)}" type="${file.type}">
-                        Seu navegador não suporta o elemento de vídeo.
+                        Your browser does not support the video element.
                     </video>
-                    <p style="margin-top: 1rem;">Vídeo carregado com sucesso!</p>
+                    <p style="margin-top: 1rem;">Video uploaded successfully!</p>
                 `;
             }
         });

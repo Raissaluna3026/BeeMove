@@ -23,7 +23,7 @@ class BeeMoveeDashboard {
             const overlay = document.getElementById('loadingOverlay');
             overlay.style.display = 'flex';
             
-            // Simular carregamento
+            // Simulate loading
             setTimeout(() => {
                 resolve();
             }, 2000);
@@ -40,15 +40,15 @@ class BeeMoveeDashboard {
     }
 
     setupEventListeners() {
-        // Atualizar data atual
+        // Update current date
         this.updateCurrentDate();
         
-        // Atualizar a cada minuto
+        // Update every minute
         setInterval(() => {
             this.updateCurrentDate();
         }, 60000);
 
-        // Adicionar listeners para responsividade
+        // Add listeners for responsiveness
         window.addEventListener('resize', () => {
             this.resizeCharts();
         });
@@ -57,7 +57,7 @@ class BeeMoveeDashboard {
     updateCurrentDate() {
         const dateElement = document.getElementById('currentDate');
         const now = new Date();
-        const dateString = now.toLocaleDateString('pt-BR', {
+        const dateString = now.toLocaleDateString('en-US', {
             weekday: 'long',
             year: 'numeric',
             month: 'long',
@@ -149,23 +149,23 @@ class BeeMoveeDashboard {
     updateWeatherData() {
         const weather = this.data.getWeatherData();
         
-        // Temperatura
+        // Temperature
         document.getElementById('avgTemp').textContent = `${weather.temperature.avg}°C`;
         document.getElementById('maxTemp').textContent = `${weather.temperature.max}°C`;
         document.getElementById('minTemp').textContent = `${weather.temperature.min}°C`;
         
-        // Umidade
+        // Humidity
         document.getElementById('avgHumidity').textContent = `${weather.humidity.avg}%`;
         const humidityProgress = document.getElementById('humidityProgress');
         humidityProgress.style.width = `${weather.humidity.avg}%`;
         
-        // Vento
+        // Wind
         document.getElementById('avgWind').textContent = `${weather.wind.speed} km/h`;
         document.getElementById('windDirectionText').textContent = weather.wind.direction;
         const windDirection = document.getElementById('windDirection');
         windDirection.style.transform = `rotate(${weather.wind.directionDegrees}deg)`;
         
-        // Pressão
+        // Pressure
         document.getElementById('avgPressure').textContent = `${weather.pressure.avg} hPa`;
         const pressureTrend = document.getElementById('pressureTrend');
         const pressureTrendText = document.getElementById('pressureTrendText');
@@ -173,27 +173,27 @@ class BeeMoveeDashboard {
         if (weather.pressure.trend === 'rising') {
             pressureTrend.className = 'fas fa-arrow-up';
             pressureTrend.style.color = '#00ff88';
-            pressureTrendText.textContent = 'Subindo';
+            pressureTrendText.textContent = 'Rising';
         } else if (weather.pressure.trend === 'falling') {
             pressureTrend.className = 'fas fa-arrow-down';
             pressureTrend.style.color = '#ff6b6b';
-            pressureTrendText.textContent = 'Descendo';
+            pressureTrendText.textContent = 'Falling';
         } else {
             pressureTrend.className = 'fas fa-minus';
             pressureTrend.style.color = '#FFD700';
-            pressureTrendText.textContent = 'Estável';
+            pressureTrendText.textContent = 'Stable';
         }
         
         // UV
         document.getElementById('avgUV').textContent = weather.uv.avg;
         document.getElementById('uvLevel').textContent = weather.uv.level;
         
-        // Visibilidade
+        // Visibility
         document.getElementById('avgVisibility').textContent = `${weather.visibility.avg} km`;
     }
 
     updateStatistics() {
-        // Estatísticas de pólen
+        // Pollen statistics
         const pollenStats = this.data.getPollenStats();
         document.getElementById('pollenAverage').textContent = `${pollenStats.average} grãos/m³`;
         document.getElementById('pollenMax').textContent = `${pollenStats.max} grãos/m³`;
@@ -201,16 +201,16 @@ class BeeMoveeDashboard {
         const statusElement = document.getElementById('pollenStatus');
         statusElement.textContent = pollenStats.status;
         
-        // Definir cor do status
-        if (pollenStats.status === 'Alto') {
+        // Set status color
+        if (pollenStats.status === 'High') {
             statusElement.style.color = '#ff6b6b';
-        } else if (pollenStats.status === 'Moderado') {
+        } else if (pollenStats.status === 'Moderate') {
             statusElement.style.color = '#FFD700';
         } else {
             statusElement.style.color = '#00ff88';
         }
         
-        // Estatísticas de chuva
+        // Rain statistics
         const rainStats = this.data.getRainStats();
         document.getElementById('rainTotal').textContent = `${rainStats.total}mm`;
         document.getElementById('rainAverage').textContent = `${rainStats.average}mm`;
@@ -226,7 +226,7 @@ class BeeMoveeDashboard {
                     <div class="alert-icon">
                         <i class="fas fa-check-circle"></i>
                     </div>
-                    <div class="alert-text">Nenhum alerta ativo no momento</div>
+                    <div class="alert-text">No active alerts at the moment</div>
                     <div class="alert-time">-</div>
                 </div>
             `;
@@ -245,10 +245,10 @@ class BeeMoveeDashboard {
     }
 
     updateCharts() {
-        // Atualizar dados
+        // Update data
         this.data.updateData();
         
-        // Atualizar gráficos
+        // Update charts
         this.charts.pollen.data = this.data.getPollenData();
         this.charts.pollen.update('none');
         
@@ -258,16 +258,16 @@ class BeeMoveeDashboard {
         this.charts.rain.data = this.data.getRainData();
         this.charts.rain.update('none');
         
-        // Atualizar estatísticas
+        // Update statistics
         this.updateStatistics();
     }
 
     startAutoUpdate() {
-        // Atualizar dados a cada 30 segundos
+        // Update data every 30 seconds
         this.updateInterval = setInterval(() => {
             this.updateCharts();
             
-            // Ocasionalmente adicionar novos alertas
+            // Occasionally add new alerts
             if (Math.random() < 0.3) {
                 const newAlert = this.data.addRandomAlert();
                 this.renderAlerts();
@@ -277,7 +277,7 @@ class BeeMoveeDashboard {
     }
 
     showNotification(alert) {
-        // Criar notificação visual
+        // Create visual notification
         const notification = document.createElement('div');
         notification.className = 'notification';
         notification.innerHTML = `
@@ -287,7 +287,7 @@ class BeeMoveeDashboard {
             </div>
         `;
         
-        // Adicionar estilos
+        // Add styles
         notification.style.cssText = `
             position: fixed;
             top: 100px;
@@ -305,12 +305,12 @@ class BeeMoveeDashboard {
         
         document.body.appendChild(notification);
         
-        // Animar entrada
+        // Animate entry
         setTimeout(() => {
             notification.style.transform = 'translateX(0)';
         }, 100);
         
-        // Remover após 5 segundos
+        // Remove after 5 seconds
         setTimeout(() => {
             notification.style.transform = 'translateX(400px)';
             setTimeout(() => {
