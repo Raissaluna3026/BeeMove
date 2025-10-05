@@ -309,6 +309,33 @@
             margin-bottom: 1rem;
         }
 
+        .video-display {
+            background: linear-gradient(135deg, #f9f7f0 0%, #f4f2e8 100%);
+            border: 3px solid #FFD700;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            color: #2c2c2c;
+            transition: all 0.3s ease;
+        }
+
+        .video-display:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(255, 215, 0, 0.3);
+        }
+
+        .video-display video {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .video-display video:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
         /* Team Section */
         .team-section {
             padding: 80px 0;
