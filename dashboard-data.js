@@ -89,7 +89,7 @@ class DashboardData {
             },
             uv: {
                 avg: 7.2,
-                level: 'Alto'
+                level: 'High'
             },
             visibility: {
                 avg: 15.4

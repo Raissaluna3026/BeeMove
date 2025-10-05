@@ -88,7 +88,7 @@ class BeeMoveeDashboard {
                         ...this.data.getChartOptions('line').plugins.tooltip,
                         callbacks: {
                             label: function(context) {
-                                return `${context.parsed.y} grãos/m³`;
+                                return `${context.parsed.y} grains/m³`;
                             }
                         }
                     }
@@ -195,8 +195,8 @@ class BeeMoveeDashboard {
     updateStatistics() {
         // Pollen statistics
         const pollenStats = this.data.getPollenStats();
-        document.getElementById('pollenAverage').textContent = `${pollenStats.average} grãos/m³`;
-        document.getElementById('pollenMax').textContent = `${pollenStats.max} grãos/m³`;
+        document.getElementById('pollenAverage').textContent = `${pollenStats.average} grains/m³`;
+        document.getElementById('pollenMax').textContent = `${pollenStats.max} grains/m³`;
         
         const statusElement = document.getElementById('pollenStatus');
         statusElement.textContent = pollenStats.status;
@@ -325,7 +325,7 @@ class BeeMoveeDashboard {
         });
     }
 
-    // Método para parar atualizações automáticas
+    // Method to stop automatic updates
     stopAutoUpdate() {
         if (this.updateInterval) {
             clearInterval(this.updateInterval);
@@ -333,7 +333,7 @@ class BeeMoveeDashboard {
         }
     }
 
-    // Método para exportar dados
+    // Method to export data
     exportData() {
         const exportData = {
             timestamp: new Date().toISOString(),
@@ -353,11 +353,11 @@ class BeeMoveeDashboard {
         link.click();
     }
 
-    // Método para modo de demonstração
+    // Method for demonstration mode
     startDemo() {
         this.stopAutoUpdate();
         
-        // Demonstração rápida com atualizações a cada 2 segundos
+        // Quick demonstration with updates every 2 seconds
         const demoInterval = setInterval(() => {
             this.updateCharts();
             
@@ -368,7 +368,7 @@ class BeeMoveeDashboard {
             }
         }, 2000);
         
-        // Parar demo após 30 segundos e voltar ao normal
+        // Stop demo after 30 seconds and return to normal
         setTimeout(() => {
             clearInterval(demoInterval);
             this.startAutoUpdate();
@@ -376,7 +376,7 @@ class BeeMoveeDashboard {
     }
 }
 
-// Inicializar dashboard quando a página carregar
+// Initialize dashboard when page loads
 document.addEventListener('DOMContentLoaded', () => {
     window.dashboard = new BeeMoveeDashboard();
     
@@ -394,7 +394,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// Limpar intervalos quando a página for fechada
+// Clear intervals when page is closed
 window.addEventListener('beforeunload', () => {
     if (window.dashboard) {
         window.dashboard.stopAutoUpdate();

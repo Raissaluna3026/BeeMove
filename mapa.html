@@ -600,19 +600,19 @@
             <!-- Map Title -->
             <div style="text-align: center; margin: 40px 0 20px;">
                 <h2 style="color: #2c2c2c; margin-bottom: 15px;">�️ BeeMove Global Monitoring Map</h2>
-                <p style="color: #2c2c2c; opacity: 0.8;">Clique nos emojis de abelha para visualizar dados em tempo real</p>
+                <p style="color: #2c2c2c; opacity: 0.8;">Click on bee emojis to view real-time data</p>
                 <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px; flex-wrap: wrap;">
                     <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c;">
-                        <i class="fas fa-mouse"></i> Arraste para navegar
+                        <i class="fas fa-mouse"></i> Drag to navigate
                     </span>
                     <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c;">
-                        <i class="fas fa-search-plus"></i> Scroll para zoom
+                        <i class="fas fa-search-plus"></i> Scroll to zoom
                     </span>
                     <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c;">
-                        <i class="fas fa-home"></i> Reset para centralizar
+                        <i class="fas fa-home"></i> Reset to center
                     </span>
                     <span style="background: rgba(255, 215, 0, 0.2); padding: 8px 15px; border-radius: 20px; font-size: 0.9rem; color: #2c2c2c; display: none;" class="mobile-instruction">
-                        <i class="fas fa-hand-point-up"></i> Duplo toque para zoom
+                        <i class="fas fa-hand-point-up"></i> Double tap to zoom
                     </span>
                 </div>
             </div>
@@ -669,7 +669,7 @@
             <div class="content-section">
                 <!-- Text Content (Default) -->
                 <div id="textContent" class="text-content">
-                    <h3 style="color: #2c2c2c; text-align: center; margin-bottom: 25px;">� O Problema Crítico da Baixa Polinização</h3>
+                    <h3 style="color: #2c2c2c; text-align: center; margin-bottom: 25px;">🚨 The Critical Problem of Low Pollination</h3>
                     
                     <p style="color: #2c2c2c; font-size: 1.1rem; line-height: 1.8; text-align: justify; margin-bottom: 20px;">
                         <strong>Low flowering and pollination represents one of the greatest environmental and economic threats of our time.</strong> 
@@ -705,7 +705,7 @@
                         </div>
                         
                         <div class="dashboard-grid">
-                            <!-- Concentração de Pólen - Ocupa toda a parte superior -->
+                            <!-- Pollen Concentration - Occupies entire top section -->
                             <div class="dashboard-panel pollen-panel">
                                 <div class="dashboard-header">
                                     <h3><i class="fas fa-seedling"></i> Pollen Concentration</h3>
@@ -730,7 +730,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Níveis de Floração - Inferior esquerda -->
+                            <!-- Flowering Levels - Bottom left -->
                             <div class="dashboard-panel flowering-panel">
                                 <div class="dashboard-header">
                                     <h3><i class="fas fa-flower"></i> Flowering Levels</h3>
@@ -741,7 +741,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Índice Pluviométrico - Centro inferior -->
+                            <!-- Precipitation Index - Bottom center -->
                             <div class="dashboard-panel rain-panel">
                                 <div class="dashboard-header">
                                     <h3><i class="fas fa-cloud-rain"></i> Precipitation Index</h3>
@@ -762,7 +762,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Dados Meteorológicos - Lado direito (ocupa toda altura) -->
+                            <!-- Meteorological Data - Right side (full height) -->
                             <div class="dashboard-panel weather-panel">
                                 <div class="dashboard-header">
                                     <h3><i class="fas fa-thermometer-half"></i> Meteorological Data</h3>
@@ -1041,8 +1041,8 @@
             const zoomPercent = Math.round(currentZoom * 100);
             
             let zoomText = `Zoom: ${zoomPercent}%`;
-            if (currentZoom >= 3) zoomText += ' (Máx)';
-            else if (currentZoom <= 0.5) zoomText += ' (Mín)';
+            if (currentZoom >= 3) zoomText += ' (Max)';
+            else if (currentZoom <= 0.5) zoomText += ' (Min)';
             
             zoomLevel.textContent = zoomText;
         }
@@ -1208,9 +1208,9 @@
             const statusElement = document.getElementById('mapPollenStatus');
             statusElement.textContent = pollenStats.status;
             
-            if (pollenStats.status === 'Alto') {
+            if (pollenStats.status === 'High') {
                 statusElement.style.color = '#ff6b6b';
-            } else if (pollenStats.status === 'Moderado') {
+            } else if (pollenStats.status === 'Moderate') {
                 statusElement.style.color = '#FFD700';
             } else {
                 statusElement.style.color = '#00ff88';
@@ -1338,10 +1338,10 @@
                 'station-3': 'MG-003 - Minas Gerais'
             };
             
-            const stationName = stationNames[stationId] || 'Estação Desconhecida';
+            const stationName = stationNames[stationId] || 'Unknown Station';
             const headerElement = document.querySelector('.map-dashboard-container h2');
             if (headerElement) {
-                headerElement.innerHTML = `📊 Dashboard BeeMove - Estação ${stationName}`;
+                headerElement.innerHTML = `📊 BeeMove Dashboard - Station ${stationName}`;
             }
         }
 
